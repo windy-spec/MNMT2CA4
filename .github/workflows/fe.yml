@@ -20,7 +20,9 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./frontend/
           server-dir: /htdocs/
-          # Quan trọng: exclude để không lỡ tay xóa mất thư mục api của backend
           exclude: |
             api/**
             **/.git*
+          # --- THÊM 2 DÒNG NÀY ---
+          protocol: ftp
+          port: 21
