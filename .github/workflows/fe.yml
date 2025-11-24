@@ -1,9 +1,12 @@
 name: Deploy Frontend
 
 on:
+  # Tự động chạy khi push vào nhánh main và có sửa đổi trong thư mục frontend
   push:
     branches: ["main"]
-    paths: ["frontend/**"] # Chỉ chạy khi sửa Frontend
+    paths: ["frontend/**"]
+  # Cho phép bấm nút chạy thủ công (Tab Actions)
+  workflow_dispatch:
 
 jobs:
   deploy-fe:
@@ -20,9 +23,10 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./frontend/
           server-dir: /htdocs/
+          # Bảo vệ thư mục api và git
           exclude: |
             api/**
             **/.git*
-          # --- THÊM 2 DÒNG NÀY ---
+          # Cấu hình giảm lỗi kết nối InfinityFree
           protocol: ftp
           port: 21
