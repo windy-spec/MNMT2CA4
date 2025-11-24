@@ -6,7 +6,7 @@ $data = [
     "player" => [
         "name" => "CRISTIANO RONALDO",
         "number" => 7,
-        "position" => "Tiền đạo (Legend)",
+        "position" => "Tiền đạo (Legend) 12312312321323",
         "avatar_url" => "https://cellphones.com.vn/sforum/wp-content/uploads/2024/02/hinh-nen-ronaldo-42.jpg",
         "stats" => [
             "goals" => 145,
@@ -23,4 +23,5 @@ $data = [
 ];
 
 echo json_encode($data);
+// Test
 ?>
