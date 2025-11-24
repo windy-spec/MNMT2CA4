@@ -1,0 +1,23 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches: ["main"]
+    paths: ["backend/**"] # Chỉ chạy khi sửa Backend
+
+jobs:
+  deploy-be:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Lấy code
+        uses: actions/checkout@v4
+
+      - name: 📂 Upload PHP vào htdocs/api
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./backend/
+          # Tự động tạo thư mục api trong htdocs
+          server-dir: /htdocs/api/
