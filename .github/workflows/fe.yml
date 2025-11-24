@@ -1,0 +1,26 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches: ["main"]
+    paths: ["frontend/**"] # Chỉ chạy khi sửa Frontend
+
+jobs:
+  deploy-fe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Lấy code
+        uses: actions/checkout@v4
+
+      - name: 📂 Upload HTML vào htdocs
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./frontend/
+          server-dir: /htdocs/
+          # Quan trọng: exclude để không lỡ tay xóa mất thư mục api của backend
+          exclude: |
+            api/**
+            **/.git*
