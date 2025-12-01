@@ -3,284 +3,243 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MU Squad Profile</title>
+    <title>VN Daily News</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Teko:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
 
     <style>
       :root {
-        --mu-red: #da291c;
-        --mu-dark: #121212;
-        --mu-gold: #fbe122;
+        --primary-color: #2c3e50; /* Màu xanh đậm sang trọng */
+        --accent-color: #e74c3c; /* Màu đỏ nhấn (Breaking news) */
+        --bg-color: #f4f4f4;
+        --card-bg: #ffffff;
+        --text-color: #333;
       }
+
       * {
         box-sizing: border-box;
       }
 
       body {
-        font-family: "Teko", sans-serif;
-        background-color: #000;
-        background-image: radial-gradient(#330000 1px, transparent 1px);
-        background-size: 20px 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
+        font-family: "Roboto", sans-serif;
+        background-color: var(--bg-color);
         margin: 0;
+        padding: 0;
+        color: var(--text-color);
+      }
+
+      /* HEADER SECTION */
+      header {
+        background-color: var(--primary-color);
         color: white;
-        padding: 20px;
-      }
-
-      .profile-container {
-        width: 100%;
-        max-width: 400px;
-      }
-
-      /* PLAYER CARD */
-      .card-player {
-        background: linear-gradient(160deg, var(--mu-red) 0%, #000000 80%);
-        border-radius: 20px 20px 0 0;
-        padding: 25px;
+        padding: 20px 0;
         text-align: center;
-        position: relative;
-        border: 3px solid var(--mu-red);
-        border-bottom: none;
-        min-height: 420px; /* Cố định chiều cao để không bị giật khi đổi trang */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
-      .player-img-box {
-        position: relative;
-        width: 150px;
-        height: 150px;
-        margin: 0 auto;
-      }
-      .card-player img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 4px solid var(--mu-gold);
-        object-fit: cover;
-        position: relative;
-        z-index: 2;
-        background-color: #000;
-      }
-      .player-img-box::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 50%;
-        box-shadow: 0 0 30px var(--mu-red);
-        z-index: 1;
-      }
-
-      h1#p-name {
-        margin: 15px 0 5px;
-        font-size: 38px;
-        font-weight: 700;
-        line-height: 1;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-      }
-      p#p-pos {
-        color: var(--mu-gold);
-        font-size: 20px;
-        margin-top: 0;
+      .site-title {
+        font-family: "Merriweather", serif;
+        font-size: 2.5rem;
+        margin: 0;
+        letter-spacing: 1px;
         text-transform: uppercase;
       }
 
-      /* NAVIGATION BUTTONS */
-      .nav-controls {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        padding: 0 10px;
+      .site-desc {
+        font-size: 1rem;
+        color: #bdc3c7;
+        margin-top: 5px;
       }
-      .nav-btn {
-        background: rgba(0, 0, 0, 0.5);
-        border: 1px solid var(--mu-gold);
-        color: var(--mu-gold);
-        padding: 5px 15px;
+
+      /* MAIN CONTAINER */
+      .container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      .section-title {
+        border-left: 5px solid var(--accent-color);
+        padding-left: 15px;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+        font-weight: 700;
+      }
+
+      /* NEWS GRID */
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(300px, 1fr)
+        ); /* Tự động chia cột responsive */
+        gap: 25px;
+      }
+
+      /* ARTICLE CARD */
+      .news-card {
+        background: var(--card-bg);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .news-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-meta {
+        font-size: 0.8rem;
+        color: #7f8c8d;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .category-tag {
+        color: var(--accent-color);
+        margin-right: 10px;
+      }
+
+      .card-title {
+        font-family: "Merriweather", serif;
+        font-size: 1.2rem;
+        margin: 0 0 10px 0;
+        line-height: 1.4;
+        color: #2c3e50;
+      }
+
+      .card-summary {
+        font-size: 0.95rem;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        flex-grow: 1;
+      }
+
+      .btn-read {
+        align-self: flex-start;
+        background-color: white;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        padding: 8px 15px;
+        border-radius: 4px;
         cursor: pointer;
-        font-family: "Teko";
-        font-size: 20px;
-        border-radius: 5px;
+        font-weight: 500;
         transition: 0.3s;
       }
-      .nav-btn:hover {
-        background: var(--mu-gold);
-        color: black;
+
+      .btn-read:hover {
+        background-color: var(--primary-color);
+        color: white;
       }
 
-      /* TEAM CARD */
-      .card-team {
-        background-color: var(--mu-dark);
-        border-radius: 0 0 20px 20px;
+      /* LOADING STATE */
+      #loading {
+        text-align: center;
+        font-size: 1.2rem;
+        padding: 50px;
+        color: #888;
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
         padding: 20px;
-        border: 3px solid var(--mu-red);
-        border-top: 2px solid var(--mu-gold);
-      }
-      .team-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 15px;
-        border-bottom: 1px solid rgba(218, 41, 28, 0.3);
-        padding-bottom: 10px;
-      }
-      .team-logo {
-        width: 30px;
-        margin-right: 15px;
-      }
-
-      .info-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 5px;
-        font-size: 18px;
-      }
-      .info-value {
-        color: white;
-        font-weight: bold;
-      }
-
-      .btn-siu {
-        width: 100%;
-        margin-top: 15px;
-        background: linear-gradient(90deg, var(--mu-red), #b30000);
-        color: white;
-        border: none;
-        padding: 10px;
-        font-family: "Teko", sans-serif;
-        font-size: 24px;
-        font-weight: bold;
-        border-radius: 5px;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(218, 41, 28, 0.4);
-      }
-      .btn-siu:active {
-        transform: scale(0.98);
+        margin-top: 50px;
+        background-color: #ecf0f1;
+        color: #7f8c8d;
+        font-size: 0.9rem;
       }
     </style>
   </head>
 
   <body>
-    <div class="profile-container">
-      <div class="card-player">
-        <div class="player-img-box">
-          <img id="p-avatar" src="" alt="Avatar" />
-        </div>
+    <header>
+      <h1 class="site-title" id="site-name">Loading...</h1>
+      <p class="site-desc" id="site-desc">...</p>
+    </header>
 
-        <h1 id="p-name">Loading.......</h1>
-        <p id="p-pos">...</p>
+    <div class="container">
+      <h2 class="section-title">Tin Mới Nhất</h2>
 
-        <div
-          class="info-row"
-          style="justify-content: center; gap: 30px; margin-top: 10px"
-        >
-          <div style="text-align: center">
-            <span style="font-size: 32px; color: var(--mu-gold)" id="p-goals"
-              >0</span
-            ><br />
-            <span style="color: #aaa; font-size: 16px">Goals</span>
-          </div>
-          <div style="text-align: center">
-            <span style="font-size: 32px; color: white"
-              >#<span id="p-number">0</span></span
-            ><br />
-            <span style="color: #aaa; font-size: 16px">Kit No.</span>
-          </div>
-        </div>
-
-        <div class="nav-controls">
-          <button class="nav-btn" onclick="prevPlayer()">&#10094; PREV</button>
-          <button class="nav-btn" onclick="nextPlayer()">NEXT &#10095;</button>
-        </div>
-      </div>
-
-      <div class="card-team">
-        <div class="team-header">
-          <img
-            class="team-logo"
-            src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"
-            alt="MU"
-          />
-          <h2
-            id="t-name"
-            style="margin: 0; font-size: 24px; color: var(--mu-red)"
-          >
-            ...
-          </h2>
-        </div>
-        <div class="info-row">
-          <span style="color: #888">Stadium:</span>
-          <span class="info-value" id="t-stadium">...</span>
-        </div>
-        <button
-          class="btn-siu"
-          onclick="alert('GGMU! Glory Glory Man United!')"
-        >
-          WE ARE UNITED
-        </button>
-      </div>
+      <div id="loading">Đang tải dữ liệu...</div>
+      <div class="news-grid" id="news-container"></div>
     </div>
 
-    <script>
-      let playersList = [];
-      let currentIndex = 0;
+    <footer>
+      <p>
+        &copy; 2024 Bản quyền thuộc về <span id="footer-name">News Site</span>
+      </p>
+    </footer>
 
+    <script>
       // 1. Fetch dữ liệu từ API
       fetch("./api/index.php")
         .then((res) => res.json())
         .then((data) => {
-          // Lưu danh sách cầu thủ vào biến toàn cục
-          playersList = data.players;
+          // Ẩn loading
+          document.getElementById("loading").style.display = "none";
 
-          // Hiển thị thông tin đội bóng
-          document.getElementById("t-name").innerText = data.team.name;
-          document.getElementById("t-stadium").innerText = data.team.stadium;
+          // Cập nhật thông tin trang báo
+          const siteInfo = data.site_info;
+          document.getElementById("site-name").innerText = siteInfo.name;
+          document.getElementById("site-desc").innerText = siteInfo.description;
+          document.getElementById("footer-name").innerText = siteInfo.name;
 
-          // Hiển thị cầu thủ đầu tiên
-          renderPlayer(currentIndex);
+          // Render danh sách bài viết
+          renderArticles(data.articles);
         })
         .catch((err) => {
           console.error(err);
-          document.getElementById("p-name").innerText = "Error API";
+          document.getElementById("loading").innerText =
+            "Lỗi kết nối đến tòa soạn!";
         });
 
-      // 2. Hàm hiển thị cầu thủ dựa trên index
-      function renderPlayer(index) {
-        if (playersList.length === 0) return;
+      // 2. Hàm tạo HTML cho danh sách bài viết
+      function renderArticles(articles) {
+        const container = document.getElementById("news-container");
 
-        const p = playersList[index];
-        document.getElementById("p-name").innerText = p.name;
-        document.getElementById("p-pos").innerText = p.position;
-        document.getElementById("p-number").innerText = p.number;
-        document.getElementById("p-goals").innerText = p.stats.goals;
-        document.getElementById("p-avatar").src = p.avatar_url;
-      }
+        // Loop qua từng bài báo và tạo thẻ HTML
+        articles.forEach((article) => {
+          const cardHTML = `
+            <article class="news-card">
+              <img src="${article.image_url}" alt="${article.title}" class="card-img" onerror="this.src='https://via.placeholder.com/400x200?text=No+Image'">
+              <div class="card-content">
+                <div class="card-meta">
+                  <span class="category-tag">${article.category}</span>
+                  <span>• ${article.date}</span>
+                </div>
+                <h3 class="card-title">${article.title}</h3>
+                <p class="card-summary">${article.summary}</p>
+                <button class="btn-read" onclick="alert('Đang mở bài viết: ID ${article.id}')">Đọc tiếp &rarr;</button>
+              </div>
+            </article>
+          `;
 
-      // 3. Xử lý nút Next
-      function nextPlayer() {
-        if (playersList.length === 0) return;
-        currentIndex++;
-        if (currentIndex >= playersList.length) {
-          currentIndex = 0; // Quay về đầu nếu hết danh sách
-        }
-        renderPlayer(currentIndex);
-      }
-
-      // 4. Xử lý nút Prev
-      function prevPlayer() {
-        if (playersList.length === 0) return;
-        currentIndex--;
-        if (currentIndex < 0) {
-          currentIndex = playersList.length - 1; // Quay về cuối nếu đang ở đầu
-        }
-        renderPlayer(currentIndex);
+          // Thêm vào container
+          container.insertAdjacentHTML("beforeend", cardHTML);
+        });
       }
     </script>
   </body>
