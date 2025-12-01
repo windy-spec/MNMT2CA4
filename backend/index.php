@@ -34,7 +34,7 @@ $players = [
 $team = [
     "name" => "MANCHESTER UNITED",
     "nickname" => "The Red Devils (Quỷ Đỏ)",
-    "stadium" => "Old Trafford",
+    "stadium" => "Old Traffordddd",
     "founded" => 1878
 ];
 
