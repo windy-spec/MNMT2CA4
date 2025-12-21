@@ -7,7 +7,7 @@ header('Access-Control-Allow-Origin: *');
 $articles = [
     [
         "id" => 1,
-        "title" => "Công nghệ AI thay đổi thế giới lập trình như thế nào?",
+        "title" => "TEST THAY ĐỔI DỮ LIỆU BE?",
         "category" => "Công Nghệ",
         "author" => "Minh Tuấn",
         "date" => "01/12/2023",
